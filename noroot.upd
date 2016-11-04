@@ -1,0 +1,4 @@
+#!/system/bin/sh
+
+lastest_version=0.2.5
+download_url=https://raw.githubusercontent.com/DeicPro/noroot/stable/noroot
