@@ -1,7 +1,7 @@
 #!/system/bin/sh
 # noroot - Hide PHH's SuperUser simply by Deic
 
-version=0.2.5-dev
+#version=0.2.5
 bin=/data/local/bin
 export PATH=$PATH:$bin
 
@@ -42,7 +42,7 @@ fi
 
 update(){
     echo "Checking for update..."
-    wget --no-check-certificate -O $tmp/noroot_update https://raw.githubusercontent.com/DeicPro/noroot/master/noroot.upd >/dev/null 2>&1
+    wget --no-check-certificate -O $tmp/noroot.upd https://raw.githubusercontent.com/DeicPro/noroot/master/noroot.upd >/dev/null 2>&1
     error=$?
 
     if [ "$error" != 0 ]; then
@@ -53,7 +53,7 @@ update(){
     . $tmp/noroot.upd
     check "sourcing noroot.upd."
 
-    if [ "$lastest_version" ] && [ ! "$lastest_version*" == "$version*" ]; then
+    if [ "$version" ] && [ "$lastest_version" ] && [ ! "$lastest_version" == "$version" ]; then
         echo "New version found: $lastest_version. Updating..."
         wget --no-check-certificate -O $tmp/noroot $download_url >/dev/null 2>&1
         check "downloading update."
@@ -69,7 +69,6 @@ echo "You have already the lastest version."
 sleep 1
 }
 
-# comment "update" to disable update mechanism
 update
 
 if [ ! -f $bin/wget ]; then
